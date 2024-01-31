@@ -73,6 +73,6 @@ type: sustainedInjuries<br>
 sustainedInjuries: light burns<br>
 
 **Facility(1)**<br>
-name:University of Calgary<br>
+name: University of Calgary<br>
 address: 2500 University Dr NW<br>
 type: temporary shelters<br>
