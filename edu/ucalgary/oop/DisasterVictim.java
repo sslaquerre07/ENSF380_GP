@@ -19,6 +19,7 @@ public class DisasterVictim {
     public DisasterVictim(String firstName, String ENTRY_DATE) {
         this.setFirstName(firstName);
         this.setEntryDate(ENTRY_DATE);
+        this.setSocialID();
     }
 
     // Getters
