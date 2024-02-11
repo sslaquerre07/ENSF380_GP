@@ -113,6 +113,8 @@ public class DisasterVictim {
                 }
             }
             this.personalBelongings = newSupplies;
+        } else {
+            throw new IllegalArgumentException("No personal belongings to remove");
         }
     }
     public void addFamilyConnection(FamilyRelation familyRelation) {
@@ -137,6 +139,8 @@ public class DisasterVictim {
                 }
             }
             this.familyConnections = newFamilyConnections;
+        } else {
+            throw new IllegalArgumentException("No family connections to remove");
         }
     }
     public void addMedicalRecord(MedicalRecord medicalRecord) {
