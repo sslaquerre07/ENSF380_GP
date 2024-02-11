@@ -2,7 +2,7 @@ package edu.ucalgary.oop;
 
 /*
 Extra Notes for development:
-Should be done for the most part 
+Done! All Tests Passed
 */
 
 public class Inquirer {
@@ -27,7 +27,7 @@ public class Inquirer {
         return this.LAST_NAME;
     }
 
-    public String getServicesPhone(){
+    public String getServicesPhoneNum(){
         return this.SERVICES_PHONE;
     }
 

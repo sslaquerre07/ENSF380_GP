@@ -1,8 +1,9 @@
 package edu.ucalgary.oop;
+import java.util.regex.*;
 
 /*
 Extra Notes for development:
-Basics done, now error checking is needed
+Done, all test passed!
 */
 
 public class MedicalRecord {
@@ -11,7 +12,10 @@ public class MedicalRecord {
     private String dateOfTreatment;
 
     //Constructor
-    public MedicalRecord(Location location, String treatmentDetails, String dateOfTreatment){
+    public MedicalRecord(Location location, String treatmentDetails, String dateOfTreatment) throws IllegalArgumentException{
+        if(!patternCheck(dateOfTreatment)){
+            throw new IllegalArgumentException("Invalid Date Format Used");
+        }
         this.location = location;
         this.treatmentDetails = treatmentDetails;
         this.dateOfTreatment = dateOfTreatment;
@@ -39,7 +43,17 @@ public class MedicalRecord {
         this.treatmentDetails = treatmentDetails;
     }
 
-    public void setDateOfTreatment(String dateOfTreatment){
+    public void setDateOfTreatment(String dateOfTreatment) throws IllegalArgumentException{
+        if(!patternCheck(dateOfTreatment)){
+            throw new IllegalArgumentException("Invalid Date Format Used");
+        }
         this.dateOfTreatment = dateOfTreatment;
+    }
+
+    //Additional Functions
+    public boolean patternCheck(String toCheck){
+        Pattern myPattern = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");
+        Matcher myMatcher = myPattern.matcher(toCheck);
+        return myMatcher.find();
     }
 }

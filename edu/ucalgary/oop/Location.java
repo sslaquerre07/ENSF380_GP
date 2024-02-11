@@ -1,16 +1,16 @@
 package edu.ucalgary.oop;
+import java.util.ArrayList;
 
 /*
 Extra Notes for development:
-Should be mostly done, current errors are based around the fact that there is no
-definition for the disastervictim class.
+Done! All Tests Passed
 */
 
 public class Location {
     private String name;
     private String address;
-    private DisasterVictim[] occupants;
-    private Supply[] supplies;
+    private ArrayList<DisasterVictim> occupants;
+    private ArrayList<Supply> supplies;
 
     //Constructor
     public Location(String name, String address){
@@ -27,11 +27,11 @@ public class Location {
         return this.address;
     }
 
-    public DisasterVictim[] getOccupants(){
+    public ArrayList<DisasterVictim> getOccupants(){
         return this.occupants;
     }
 
-    public Supply[] getSupplies(){
+    public ArrayList<Supply> getSupplies(){
         return this.supplies;
     }
 
@@ -44,67 +44,69 @@ public class Location {
         this.address = address;
     }
 
-    public void setSupplies(Supply[] supplies){
+    public void setSupplies(ArrayList<Supply> supplies){
         this.supplies = supplies;
     }
 
-    public void setOccupants(DisasterVictim[] occupants){
+    public void setOccupants(ArrayList<DisasterVictim> occupants){
         this.occupants = occupants;
     }
 
     //Additional Functions
     public void addOccupant(DisasterVictim occupant){
-        DisasterVictim[] old_list = this.getOccupants();
-        DisasterVictim[] new_list = new DisasterVictim[old_list.length + 1];
-        for(int i = 0;i<old_list.length;i++){
-            new_list[i] = old_list[i];
+        ArrayList<DisasterVictim> old_list = this.getOccupants();
+        ArrayList<DisasterVictim> new_list = new ArrayList<DisasterVictim>();
+        if(old_list != null){
+            int old_len = old_list.size();
+            for(int i = 0;i<old_len;i++){
+                new_list.add(old_list.get(i));
+            }
         }
-        new_list[old_list.length] = occupant;
+        new_list.add(occupant);
 
         this.setOccupants(new_list);
     }
 
     public void removeOccupant(DisasterVictim occupant){
-        DisasterVictim[] old_list = this.getOccupants();
-        DisasterVictim[] new_list = new DisasterVictim[old_list.length-1];
-        int OLD_ID = occupant.getAssignedSocialID();
-        for(int i=0;i<new_list.length;i++){
-            int id = old_list[i].getAssignedSocialID();
-            if(id == OLD_ID){
-                i--;
-                continue;
-            }
-            else{
-                new_list[i] = old_list[i];
-            }
+        ArrayList<DisasterVictim> old_list = this.getOccupants();
+        ArrayList<DisasterVictim> new_list = new ArrayList<>();
+        if(old_list == null){
+            System.out.println("List not initialized");
+            return;
         }
 
+        old_list.remove(occupant);
         this.setOccupants(new_list);
     }
 
     public void addSupply(Supply supply){
-        Supply[] old_list = this.getSupplies();
-        Supply[] new_list = new Supply[old_list.length + 1];
-        for(int i = 0;i<old_list.length;i++){
-            new_list[i] = old_list[i];
+        ArrayList<Supply> old_list = this.getSupplies();
+        ArrayList<Supply> new_list = new ArrayList<Supply>();
+        if(old_list != null){
+            int old_len = old_list.size();
+            for(int i = 0;i<old_len;i++){
+                new_list.add(old_list.get(i));
+            }
         }
-        new_list[old_list.length] = supply;
+        new_list.add(supply);
 
         this.setSupplies(new_list);
     }
 
     public void removeSupply(Supply supply){
-        Supply[] old_list = this.getSupplies();
-        Supply[] new_list = new Supply[old_list.length-1];
-        String OLD_TYPE = supply.getType();
-        for(int i=0;i<new_list.length;i++){
-            String type = old_list[i].getType();
-            if(type.equals(OLD_TYPE)){
-                i--;
+        ArrayList<Supply> old_list = this.getSupplies();
+        ArrayList<Supply> new_list = new ArrayList<>();
+        int index = old_list.indexOf(supply);
+        if(index == -1){
+            System.out.println("Element not found");
+            return;
+        }
+        for(int i=0;i<old_list.size();i++){
+            if(i == index){
                 continue;
             }
             else{
-                new_list[i] = old_list[i];
+                new_list.add(supply);
             }
         }
 

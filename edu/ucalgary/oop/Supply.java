@@ -2,7 +2,7 @@ package edu.ucalgary.oop;
 
 /*
 Extra Notes for development:
-Should be done for the most part 
+Done! All Tests Passed
 */
 
 public class Supply {
